@@ -35,6 +35,7 @@ This project dynamically creates a responsive navigation bar using JavaScript an
 
 ## Developer
 - created by | Sal Monineath
+- only me
 
 ## License
 This project is open-source and free to use.
