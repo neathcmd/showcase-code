@@ -1,4 +1,4 @@
-# Navbar Component
+# Simple Navbar Component
 
 This project dynamically creates a responsive navigation bar using JavaScript and Tailwind CSS. The navbar includes a logo, navigation links, and a login button.
 
