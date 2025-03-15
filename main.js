@@ -5,7 +5,8 @@ head.classList.add(
   "px-6",
   "flex",
   "items-center",
-  "justify-between"
+  "justify-between",
+  "flex-wrap"
 );
 
 // Create logo
@@ -20,61 +21,52 @@ createLogo.classList.add(
 createLogo.innerHTML = "My Logo";
 createLogo.href = "#";
 
+// Create menu button (hamburger icon)
+const createMenuBtn = document.createElement("button");
+createMenuBtn.innerHTML = "☰"; // Unicode hamburger menu
+createMenuBtn.classList.add(
+  "text-white",
+  "text-3xl",
+  "md:hidden",
+  "focus:outline-none"
+);
+
 // Create <nav> element
 const createNav = document.createElement("nav");
-createNav.classList.add("flex", "space-x-6");
-
-// Add Home link
-const createHomeLink = document.createElement("a");
-createHomeLink.innerHTML = "Home";
-createHomeLink.href = "#";
-createHomeLink.classList.add(
-  "hover:text-black",
-  "text-white",
-  "transition-all"
+createNav.classList.add(
+  "hidden", // Initially hidden on mobile
+  "w-full",
+  "md:flex",
+  "md:space-x-6",
+  "md:w-auto",
+  "flex-col",
+  "md:flex-row",
+  "items-center"
 );
 
-createNav.appendChild(createHomeLink);
+// Toggle menu function
+createMenuBtn.addEventListener("click", () => {
+  createNav.classList.toggle("hidden");
+});
 
-// Add About link
-const createAboutLink = document.createElement("a");
-createAboutLink.innerHTML = "About";
-createAboutLink.href = "#"; // Fixed typo
-createAboutLink.classList.add(
-  "hover:text-black",
-  "text-white",
-  "transition-all"
-);
+// Function to create links
+function createNavLink(text, href) {
+  const link = document.createElement("a");
+  link.innerHTML = text;
+  link.href = href;
+  link.classList.add("hover:text-black", "text-white", "transition-all");
+  return link;
+}
 
-createNav.appendChild(createAboutLink);
+// Add navigation links
+createNav.appendChild(createNavLink("Home", "#"));
+createNav.appendChild(createNavLink("About", "#"));
+createNav.appendChild(createNavLink("Services", "#"));
+createNav.appendChild(createNavLink("Contact", "#"));
 
-// add Service Link
-const createServiceLink = document.createElement("a");
-createServiceLink.innerHTML = "Services";
-createServiceLink.href = "#"; // Fixed typo
-createServiceLink.classList.add(
-  "hover:text-black",
-  "text-white",
-  "transition-all"
-);
-
-createNav.appendChild(createServiceLink);
-
-// add Contact link
-const createContactLink = document.createElement("a");
-createContactLink.innerHTML = "Contact";
-createContactLink.href = "#";
-createContactLink.classList.add(
-  "hover:text-black",
-  "text-white",
-  "transition-all"
-);
-
-createNav.appendChild(createContactLink);
-
-// Create a div for the login button
+// Create a div for the login & signup buttons
 const createDivBtn = document.createElement("div");
-createDivBtn.classList.add("flex", "space-x-4");
+createDivBtn.classList.add("flex", "space-x-4", "mt-4", "md:mt-0");
 
 // Create Login button
 const createLoginBtn = document.createElement("button");
@@ -93,7 +85,7 @@ createLoginBtn.classList.add(
 
 createDivBtn.appendChild(createLoginBtn);
 
-// create Dign up button
+// Create Sign Up button
 const createSignUpBtn = document.createElement("button");
 createSignUpBtn.innerHTML = "Sign Up";
 createSignUpBtn.classList.add(
@@ -110,7 +102,8 @@ createSignUpBtn.classList.add(
 
 createDivBtn.appendChild(createSignUpBtn);
 
-// Append elements in the correct order
+// Append elements
 head.appendChild(createLogo);
+head.appendChild(createMenuBtn); // Append hamburger button
 head.appendChild(createNav);
-head.appendChild(createDivBtn);
+createNav.appendChild(createDivBtn);
